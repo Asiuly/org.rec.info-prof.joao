@@ -11,7 +11,6 @@ typedef struct {
 int main() {
     FILE *arquivo = fopen("compras.txt", "r");
     if (arquivo == NULL) {
-        printf("Erro ao abrir o arquivo.\n");
         exit(1);
     }
 
@@ -20,14 +19,11 @@ int main() {
     int numRegistros = 0;
 
     while (1) {
-        int quantidade;
-        float preco;
-
-        if (fscanf(arquivo, "%*[^|]|%d|%f", &quantidade, &preco) != 2) {
+        if (fscanf(arquivo, "%*[^|]|%d|%f", &registros[numRegistros].quantidade, &registros[numRegistros].preco) != 2) {
             break;
         }
 
-        total += quantidade * preco;
+        total += registros[numRegistros].quantidade * registros[numRegistros].preco;
         numRegistros++;
     }
 
